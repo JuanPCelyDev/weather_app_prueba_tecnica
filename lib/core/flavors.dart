@@ -17,4 +17,22 @@ class F {
     }
   }
 
+  static String get apiKey{
+    switch (appFlavor) {
+      case Flavor.dev:
+        return 'G3XERFPWBV856BAN5HFGME434';
+      case Flavor.prod:
+        return 'G3XERFPWBV856BAN5HFGME434';
+    }
+  }
+
+  static String get baseUrl{
+    switch (appFlavor) {
+      case Flavor.dev:
+        return 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
+      case Flavor.prod:
+        return 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline';
+    }
+  }
+
 }
