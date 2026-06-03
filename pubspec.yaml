@@ -38,6 +38,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_flavorizr: ^2.5.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -87,3 +88,30 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flavorizr:
+  app:
+    android:
+      display_name: "Weather App"
+    ios:
+      display_name: "Weather App"
+
+  flavors:
+    dev:
+      app:
+        name: "Weather DEV"
+      android:
+        applicationId: "com.juanpcelydev.weather.dev"
+        icon: "assets/icons/dev_icon.png"
+      ios:
+        bundleId: "com.juanpcelydev.weather.dev"
+        icon: "assets/icons/dev_icon.png"
+
+    prod:
+      app:
+        name: "Weather PROD"
+      android:
+        applicationId: "com.juanpcelydev.weather"
+        icon: "assets/icons/prod_icon.png"
+      ios:
+        bundleId: "com.juanpcelydev.weather"
+        icon: "assets/icons/prod_icon.png"
