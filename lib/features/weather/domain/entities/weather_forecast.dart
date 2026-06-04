@@ -12,6 +12,21 @@ class WeatherForecast {
 
 }
 
+class currentCondicion{
+  final String  dateTime;
+  final double temperature;
+  final double conditions;
+  final String icon;
+
+  currentCondicion({
+    required this.dateTime,
+    required this.temperature,
+    required this.conditions,
+    required this.icon
+  });
+}
+
+
 //Se crea una clase adicional para el clima de cada día
 class WeatherDay {
   final String dateTime;
@@ -22,6 +37,8 @@ class WeatherDay {
   final String conditions;
   final String icon;
 
+
+
   WeatherDay({
     required this.dateTime,
     required this.maxTemperature,
@@ -30,6 +47,4 @@ class WeatherDay {
     required this.humidity,
     required this.conditions,
     required this.icon});
-
-
 }

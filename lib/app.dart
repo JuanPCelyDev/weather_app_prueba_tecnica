@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'core/flavors.dart';
-import 'pages/my_home_page.dart';
+import 'features/weather/presentation/screens/weather_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,9 +10,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: F.title,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: _flavorBanner(child: MyHomePage(), show: kDebugMode),
+      home: _flavorBanner(child: WeatherScreen(), show: kDebugMode),
     );
   }
 
