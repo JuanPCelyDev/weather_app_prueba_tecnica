@@ -8,6 +8,7 @@ import 'package:weather_app_prueba_tecnica/features/weather/presentation/widgets
 import 'package:weather_app_prueba_tecnica/features/weather/presentation/widgets/weather_info_card.dart';
 import '../../../../core/flavors.dart';
 import '../controllers/favorites_controller.dart';
+import '../controllers/weather_last_days_controller.dart';
 
 class WeatherScreen extends ConsumerWidget{
   const WeatherScreen({super.key});
@@ -40,64 +41,12 @@ class WeatherScreen extends ConsumerWidget{
       ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Weather Flutter App',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Inicio'),
-              onTap: () {
-                // Acción al presionar Inicio
-                Navigator.pop(context); // Cierra el menú
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text('Favoritos'),
-              onTap: () {
-                // Acción al presionar Configuración
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.search),
-              title: Text('Ultimos 5 días'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WeatherLastDaysScreen()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('Acerca de'),
-              onTap: () {
-                // Acción al presionar Configuración
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0, left: 8.0, right: 8.0),
         child: Column(
           children: [
+            Text('Favoritos'),
+            const SizedBox(height: 10,),
             favorites.isEmpty ? const Center(
               child: Text(
                 'Aún no tienes ciudades favoritas.',
@@ -112,16 +61,24 @@ class WeatherScreen extends ConsumerWidget{
               itemBuilder: (context, index) {
                 final location = favorites[index];
                 final current = location.currentCondition;
-                return WeatherCarouselCard(
+                return GestureDetector(
+                    onTap: () {
+                      ref
+                          .read(weatherControllerProvider.notifier)
+                          .fetchWeather(location.location);
+                    },
+                    child: WeatherCarouselCard(
                     title: location.location,
-                    description: current.conditions,
+                    description: current!.conditions,
                     temperature: current.temperature.toString(),
                     icon: current.weatherIcon,
                     color: Colors.white,
+                )
                 );
               },
             ),
             ),
+            const SizedBox(height: 5,),
             Expanded(child: weatherState.when(
                 data: (weather){
                   final isFavorite = favorites.any((fav) => fav.location == weather?.location);
@@ -130,10 +87,11 @@ class WeatherScreen extends ConsumerWidget{
                       child: Text("Ingresa una ubicación para ver el clima"),
                     );
                   }
-
                   return  Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        Text('Detalles Clima '),
+                        const SizedBox(height: 5,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -158,15 +116,17 @@ class WeatherScreen extends ConsumerWidget{
                         ],
                         ),
                         WeatherInfoCard(
-                            title: weather.currentCondition.conditions,
-                            temperature: '${weather.currentCondition.temperature}°C',
+                            title: weather.currentCondition!.conditions,
+                            temperature: '${weather.currentCondition!.temperature}°C',
                             rangetemp: 'min ${weather.days.first.minTemperature}°C - max ${weather.days.first.maxTemperature}°C',
-                            timeInfo: weather.currentCondition.dateTime,
-                            icon: Icon(weather.currentCondition.weatherIcon)
+                            timeInfo: weather.currentCondition!.dateTime,
+                            icon: Icon(weather.currentCondition!.weatherIcon)
                         ),
                         const SizedBox(height: 10,),
+                        Text('Pronostico por hora'),
+                        const SizedBox(height: 5,),
                         SizedBox(
-                           height: 150,
+                           height: 130,
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: weather.days.first.hours.length,
@@ -180,7 +140,22 @@ class WeatherScreen extends ConsumerWidget{
                                       color: Colors.blue);
                                 })
 
-                        )
+                        ),
+                        const SizedBox(height: 10,),
+                        ElevatedButton(
+                            onPressed: (){
+                              final currentLocation = ref.read(weatherControllerProvider).value?.location;
+
+                              if (currentLocation != null) {
+                                ref.read(weatherLastDaysControllerProvider.notifier)
+                                    .fetchWeatherDays(currentLocation, '4');
+                              }
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const WeatherLastDaysScreen()),
+                              );
+                        }, child: Text('Clima últimos 5 días'))
                       ],
                     );
 

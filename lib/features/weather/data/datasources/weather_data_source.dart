@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_app_prueba_tecnica/features/weather/domain/entities/weather_forecast.dart';
 import '../../../../core/network/dio_provider.dart';
 import '../models/weather_forecast_model.dart';
 

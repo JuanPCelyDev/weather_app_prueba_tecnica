@@ -1,21 +1,19 @@
-import 'package:weather_app_prueba_tecnica/features/weather/domain/entities/weather_forecast.dart';
-
 class WeatherForecast {
   final String location;
   final String description;
-  CurrentCondition currentCondition;
+  CurrentCondition? currentCondition;
   final List<WeatherDay> days;
 
   WeatherForecast({
     required this.location,
     required this.description,
     required this.days,
-    required this.currentCondition,
+    this.currentCondition,
   });
 }
 
-class CurrentCondition{
-  final String  dateTime;
+class CurrentCondition {
+  final String dateTime;
   final double temperature;
   final String conditions;
   final String icon;
@@ -24,10 +22,9 @@ class CurrentCondition{
     required this.dateTime,
     required this.temperature,
     required this.conditions,
-    required this.icon
+    required this.icon,
   });
 }
-
 
 //Se crea una clase adicional para el clima de cada día
 class WeatherDay {
@@ -35,25 +32,22 @@ class WeatherDay {
   final double maxTemperature;
   final double minTemperature;
   final double temperature;
-  final double humidity;
   final String conditions;
   final String icon;
   final List<WeatherHour> hours;
-
 
   WeatherDay({
     required this.dateTime,
     required this.maxTemperature,
     required this.minTemperature,
     required this.temperature,
-    required this.humidity,
     required this.conditions,
     required this.hours,
-    required this.icon
+    required this.icon,
   });
 }
 
-class WeatherHour{
+class WeatherHour {
   final String dateTime;
   final double temperature;
   final String conditions;
@@ -63,6 +57,6 @@ class WeatherHour{
     required this.dateTime,
     required this.temperature,
     required this.conditions,
-    required this.icon
+    required this.icon,
   });
 }

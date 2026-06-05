@@ -38,11 +38,14 @@ dependencies:
   dio: ^5.9.2
   geolocator: ^14.0.2
   jiffy: ^6.4.5
+  shared_preferences: ^2.5.5
+  connectivity_plus: ^7.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_flavorizr: ^2.5.0
+  mocktail: ^1.0.5
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

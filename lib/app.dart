@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'core/flavors.dart';
+import 'core/widgets/connectivity_banner.dart';
 import 'features/weather/presentation/screens/weather_screen.dart';
 
 class App extends StatelessWidget {
@@ -15,6 +16,16 @@ class App extends StatelessWidget {
       title: F.title,
       theme: ThemeData(primarySwatch: Colors.blue),
       home: _flavorBanner(child: WeatherScreen(), show: kDebugMode),
+      builder: (context, child) {
+        return Scaffold(
+          body: Column(
+            children: [
+              const GlobalConnectivityBanner(),
+              Expanded(child: child!),
+            ],
+          ),
+        );
+      },
     );
   }
 

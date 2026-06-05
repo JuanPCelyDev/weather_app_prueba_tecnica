@@ -8,7 +8,6 @@ class WeatherInfoCard extends StatelessWidget {
   final String rangetemp;
   final String timeInfo;
   final Icon icon;
-  final VoidCallback? onTap;
 
   const WeatherInfoCard({
     super.key,
@@ -17,7 +16,6 @@ class WeatherInfoCard extends StatelessWidget {
     required this.rangetemp,
     required this.timeInfo,
     required this.icon,
-    this.onTap,
   });
 
   @override
@@ -28,7 +26,6 @@ class WeatherInfoCard extends StatelessWidget {
       color: Colors.lightBlueAccent.withValues(alpha: 0.7),
       elevation: 2,
       child: InkWell(
-        onTap: onTap,
         borderRadius: BorderRadius.circular(16),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -77,7 +74,7 @@ class WeatherInfoCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 10,),
                     Text(
-                        Jiffy.now().format(pattern: 'EEEE, HH:mm'),
+                        'Hoy ${Jiffy.now().format(pattern: 'EEEE, HH:mm')}',
                       style: const TextStyle(
                           fontSize: 15,
                           fontWeight:  FontWeight.normal,
@@ -89,8 +86,6 @@ class WeatherInfoCard extends StatelessWidget {
                 ),
               ),
 
-
-              // 3. Texto a la derecha (Temperatura resaltada en negro)
             ],
           ),
         ),

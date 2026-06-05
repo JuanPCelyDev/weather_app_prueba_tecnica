@@ -15,7 +15,7 @@ class WeatherCarouselCard extends StatelessWidget {
     required this.description,
     required this.temperature,
     required  this.icon,
-    required this.color
+    required this.color,
   });
 
   @override
@@ -28,7 +28,6 @@ class WeatherCarouselCard extends StatelessWidget {
       color: color,
       elevation: 2,
       child: Padding(
-        // Agregamos un padding interno general para que nada toque los bordes
         padding: const EdgeInsets.all(8.0),
       child:Column(
         mainAxisAlignment: MainAxisAlignment.center,

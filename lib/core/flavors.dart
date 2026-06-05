@@ -20,9 +20,9 @@ class F {
   static String get apiKey{
     switch (appFlavor) {
       case Flavor.dev:
-        return 'G3XERFPWBV856BAN5HFGME434';
+        return '4EPEQPD29BS5RAGRJZ8HE33YR';
       case Flavor.prod:
-        return 'G3XERFPWBV856BAN5HFGME434';
+        return '4EPEQPD29BS5RAGRJZ8HE33YR';
     }
   }
 
