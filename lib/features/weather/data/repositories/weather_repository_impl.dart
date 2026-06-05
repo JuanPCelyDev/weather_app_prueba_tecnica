@@ -9,9 +9,15 @@ class WeatherRepositoryImpl extends WeatherRepository {
   WeatherRepositoryImpl(this._weatherDataSource);
 
   @override
-  Future<WeatherForecast> getWeather(String location) async {
+  Future<WeatherForecast> getWeatherByLocation(String location) async {
     final weatherModel = await _weatherDataSource.getWeatherForecast(location);
     return weatherModel;
+  }
+
+  @override
+  Future<WeatherForecast> getWeatherLastDays(String location, String days) async {
+   final weatherModel = await _weatherDataSource.getWeatherLastDays(location, days);
+   return weatherModel;
   }
 
 }

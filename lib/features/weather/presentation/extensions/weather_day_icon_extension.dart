@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/weather_forecast.dart';
 
-extension WeatherIcon on CurrentCondition {
+extension WeatherDayIcon on WeatherDay {
   IconData get weatherIcon {
     switch (icon) {
       case 'clear-day': return Icons.wb_sunny_rounded;

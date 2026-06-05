@@ -13,7 +13,7 @@ class WeatherController  extends AsyncNotifier<WeatherForecast?>{
 
     if (coordinates != null) {
       final repository = ref.read(weatherRepositoryProvider);
-      return await repository.getWeather(coordinates);
+      return await repository.getWeatherByLocation(coordinates);
     }
 
     return null;
@@ -28,7 +28,7 @@ class WeatherController  extends AsyncNotifier<WeatherForecast?>{
 
        final repository = ref.read(weatherRepositoryProvider);
 
-       return await repository.getWeather(location);
+       return await repository.getWeatherByLocation(location);
      });
   }
 }

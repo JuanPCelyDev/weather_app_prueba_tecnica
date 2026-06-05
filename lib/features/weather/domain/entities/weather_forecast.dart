@@ -1,24 +1,26 @@
+import 'package:weather_app_prueba_tecnica/features/weather/domain/entities/weather_forecast.dart';
+
 class WeatherForecast {
   final String location;
   final String description;
+  CurrentCondition currentCondition;
   final List<WeatherDay> days;
-
 
   WeatherForecast({
     required this.location,
     required this.description,
     required this.days,
-});
-
+    required this.currentCondition,
+  });
 }
 
-class currentCondicion{
+class CurrentCondition{
   final String  dateTime;
   final double temperature;
-  final double conditions;
+  final String conditions;
   final String icon;
 
-  currentCondicion({
+  CurrentCondition({
     required this.dateTime,
     required this.temperature,
     required this.conditions,
@@ -36,7 +38,7 @@ class WeatherDay {
   final double humidity;
   final String conditions;
   final String icon;
-
+  final List<WeatherHour> hours;
 
 
   WeatherDay({
@@ -46,5 +48,21 @@ class WeatherDay {
     required this.temperature,
     required this.humidity,
     required this.conditions,
-    required this.icon});
+    required this.hours,
+    required this.icon
+  });
+}
+
+class WeatherHour{
+  final String dateTime;
+  final double temperature;
+  final String conditions;
+  final String icon;
+
+  WeatherHour({
+    required this.dateTime,
+    required this.temperature,
+    required this.conditions,
+    required this.icon
+  });
 }

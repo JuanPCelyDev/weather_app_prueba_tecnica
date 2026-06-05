@@ -4,7 +4,9 @@ class WeatherForecastModel extends WeatherForecast{
   WeatherForecastModel({
     required super.location,
     required super.description,
-    required super.days});
+    required super.days,
+    required super.currentCondition,
+    });
 
   factory WeatherForecastModel.fromJson(Map<String, dynamic> json){
     return WeatherForecastModel(
@@ -12,10 +14,32 @@ class WeatherForecastModel extends WeatherForecast{
     description: json['description'] ?? '',
     days: (json['days'] as List? ?? [])
     .map((day) => WeatherDayModel.fromJson(day))
-    .toList());
+    .toList(),
+    currentCondition: WeatherCurrenConditionModel.fromJson(
+      json['currentConditions'] as Map<String, dynamic>,
+    ),
+    );
+
   }
 }
 
+
+class WeatherCurrenConditionModel extends CurrentCondition{
+  WeatherCurrenConditionModel({
+    required super.dateTime,
+    required super.temperature,
+    required super.conditions,
+    required super.icon});
+
+  factory WeatherCurrenConditionModel.fromJson(Map<String, dynamic> json){
+    return WeatherCurrenConditionModel(
+        dateTime: json['datetime'] ?? '',
+        temperature: (json['temp'] as num? ?? 0).toDouble(),
+        conditions: json['conditions'] ?? '',
+        icon: json['icon'] ?? '');
+  }
+
+}
 class WeatherDayModel extends WeatherDay {
   WeatherDayModel({
     required super.dateTime,
@@ -24,6 +48,7 @@ class WeatherDayModel extends WeatherDay {
     required super.temperature,
     required super.humidity,
     required super.conditions,
+    required super.hours,
     required super.icon});
 
   factory WeatherDayModel.fromJson(Map<String, dynamic> json){
@@ -33,8 +58,29 @@ class WeatherDayModel extends WeatherDay {
         minTemperature: (json['tempmin'] as num? ?? 0).toDouble(),
         temperature: (json['temp'] as num? ?? 0).toDouble(),
         humidity: (json['humidity'] as num? ?? 0).toDouble(),
-        conditions: json['conditions']?? '',
+        conditions: json['conditions'] ?? '',
+        hours: (json['hours'] as List? ?? [])
+        .map((hour) => WeatherHourModel.fromJson(hour))
+        .toList(),
         icon: json['icon']?? '');
+  }
+
+}
+
+class WeatherHourModel extends WeatherHour{
+  WeatherHourModel({
+    required super.dateTime,
+    required super.temperature,
+    required super.conditions,
+    required super.icon});
+
+
+  factory WeatherHourModel.fromJson(Map<String, dynamic> json){
+    return WeatherHourModel(
+        dateTime: json['datetime'] ?? '',
+        temperature: (json['temp'] as num? ?? 0).toDouble(),
+        conditions: json['conditions']?? '',
+        icon: json['icon'] ?? '');
   }
 
 }
