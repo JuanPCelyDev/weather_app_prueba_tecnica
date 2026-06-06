@@ -7,11 +7,40 @@ import '../extensions/weather_day_icon_extension.dart';
 import '../extensions/weather_icon_extension.dart';
 import '../widgets/weather_info_card.dart';
 
-class WeatherLastDaysScreen extends ConsumerWidget {
+
+class WeatherLastDaysScreen extends ConsumerStatefulWidget {
   const WeatherLastDaysScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WeatherLastDaysScreen> createState() => _WeatherLastDaysScreenState();
+}
+class _WeatherLastDaysScreenState extends ConsumerState<WeatherLastDaysScreen> {
+
+  late final TextEditingController searchController;
+  @override
+  void initState() {
+    super.initState();
+    searchController = TextEditingController();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentHomeWeather = ref.read(weatherControllerProvider).value;
+
+      if (currentHomeWeather != null) {
+        searchController.text = currentHomeWeather.location;
+        ref.read(weatherLastDaysControllerProvider.notifier)
+            .fetchWeatherDays(currentHomeWeather.location, '4');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final TextEditingController searchController = TextEditingController();
     final weatherState = ref.watch(weatherControllerProvider);
     final weatherStateLastDays = ref.watch(weatherLastDaysControllerProvider);

@@ -144,13 +144,6 @@ class WeatherScreen extends ConsumerWidget{
                         const SizedBox(height: 10,),
                         ElevatedButton(
                             onPressed: (){
-                              final currentLocation = ref.read(weatherControllerProvider).value?.location;
-
-                              if (currentLocation != null) {
-                                ref.read(weatherLastDaysControllerProvider.notifier)
-                                    .fetchWeatherDays(currentLocation, '4');
-                              }
-
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const WeatherLastDaysScreen()),
