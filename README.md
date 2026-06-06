@@ -76,15 +76,15 @@ lib/
 ```
 🛠️ Tecnologías y Paquetes Utilizados
 Flutter SDK
-**Flutter Riverpod (^3.3.1)**: Para el manejo de estado global, inyección de dependencias reactiva y control de flujos asíncronos.
-**Dio(^5.9.2)** Cliente HTTP avanzado elegido por su robustez, soporte nativo para interceptores, manejo eficiente de errores y facilidad de configuración
-**Connectivity Plus (^7.1.1)**: Para el monitoreo constante del estado de red en el dispositivo.
-**Mocktail**: Para la creación de Mocks deterministas y robustos en la suite de pruebas.
-**Flutter Test SDK**: Framework base de testing para pruebas unitarias y de widgets.
-**shared_preferences(^2.5.5)**:Utilizado para persistir de forma rápida y eficiente las estructuras JSON del clima, permitiendo la resiliencia offline de la app y capturar los datos de favoritos.
-**geolocator(^14.0.2)**: Encargado de la gestión de permisos nativos y de la obtención precisa de las coordenadas geográficas
-**jiffy(^6.4.5)**: Librería especializada elegida para la manipulación, traducción y formateo estético de fechas y horas
-**flutter_flavorizr(^2.5.0)** Herramienta de automatización empleada para generar y configurar de forma limpia los Flavors nativos tanto en Android (Gradle) como en iOS (XCode Schemes)
+- **Flutter Riverpod (^3.3.1)**: Para el manejo de estado global, inyección de dependencias reactiva y control de flujos asíncronos.
+- **Dio(^5.9.2)** Cliente HTTP avanzado elegido por su robustez, soporte nativo para interceptores, manejo eficiente de errores y facilidad de configuración
+- **Connectivity Plus (^7.1.1)**: Para el monitoreo constante del estado de red en el dispositivo.
+- **Mocktail**: Para la creación de Mocks deterministas y robustos en la suite de pruebas.
+- **Flutter Test SDK**: Framework base de testing para pruebas unitarias y de widgets.
+- **shared_preferences(^2.5.5)**:Utilizado para persistir de forma rápida y eficiente las estructuras JSON del clima, permitiendo la resiliencia offline de la app y capturar los datos de favoritos.
+- **geolocator(^14.0.2)**: Encargado de la gestión de permisos nativos y de la obtención precisa de las coordenadas geográficas
+- **jiffy(^6.4.5)**: Librería especializada elegida para la manipulación, traducción y formateo estético de fechas y horas
+- **flutter_flavorizr(^2.5.0)** Herramienta de automatización empleada para generar y configurar de forma limpia los Flavors nativos tanto en Android (Gradle) como en iOS (XCode Schemes)
 
 
 ##Configuración del API Key (Paso Obligatorio)
